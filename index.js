@@ -10,12 +10,13 @@ const dbConnection = require('./dbconnection')
 const mydata=require("./router/user")
 const classnote=require("./router/topics")
 const studattend=require("./router/studentsattend")
+const cors=require("cors")
 
 
 const app=express()
 dotenv.config()
 app.use(express.json())
-
+app.use(cors())
 
 // dbConnection();
 dbConnection();
