@@ -74,11 +74,10 @@ exports.deleteTopics=async(req,res)=>{
 
 exports.registerAttendance=async(req,res)=>{
     try {
-         let postdate=new Date().toJSON().slice(0,10);
-
+        
          
          let attend = await Attendance({
-            ...req.body,date:postdate
+            ...req.body
          }).save()
 
          return res.status(200).json({message:"successfully added",attend})
@@ -100,3 +99,5 @@ exports.getallStudents=async(req,res)=>{
         return  res.status(500).json({message:'internal server error'})
     }
 }
+
+
