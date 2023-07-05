@@ -55,23 +55,7 @@ exports.authorizeRoles = (...roles)=>{
 }
 
 
-//   export async  function createproduct(req,res){
 
-//     try {
-//         const topics=  await new Topics({
-//            ...req.body
-
-//         }).save()
-//         return res.status(500).json({message:"topics create",topics})
-        
-//     } catch (error) {
-//         console.log('server error',error)
-//         return  res.status(500).json({message:'internal server error'})
-        
-//     }
-//   }
-
-//   module.exports={isAuthenticated,authorizeRoles}
 
 exports.getfunction=(req,res)=>{
      return res.status(200).json({message:"successfully get logic"})
