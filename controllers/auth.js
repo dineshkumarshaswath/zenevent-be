@@ -41,7 +41,7 @@ exports.authorizeRoles = (...roles)=>{
         
         return  (req,res, next)=>{
             if(!roles.includes(req.user.role)){
-                return res.status(400).json({message :"you are not eligible ${req.user.role}"})
+                return res.status(400).json({message :"you are not Authorize person"})
             }
             next()
         }
@@ -98,7 +98,7 @@ exports.signUser=async(req,res)=>{
     }).save();
     //  return res.status(200).json({data:"successully added"})
      const token=generatejwttoken(user._id)
-      return  res.status(201).json({message:"successfully logged in",token})
+      return  res.status(201).json({message:"successfully logged in",token,user})
 
 
 
@@ -127,7 +127,7 @@ exports.signUser=async(req,res)=>{
                 }
                 
                  const token=generatejwttoken(user._id)
-                  return  res.status(201).json({message:'successfully logged in ',token})
+                  return  res.status(201).json({message:'successfully logged in ',token,user})
             
               
             
@@ -145,7 +145,7 @@ exports.signUser=async(req,res)=>{
 exports.allUsers=async(req,res)=>{
     try {
         let allusers= await User.find()
-        return res.status(200).json({message:"this is all users",allusers})
+        return res.status(200).json({message:"successfully loaded",allusers})
         
     } catch (error) {
         console.log('server error',error)
