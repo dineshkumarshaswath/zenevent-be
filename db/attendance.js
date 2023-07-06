@@ -6,19 +6,14 @@ const attendanceSchema= new mongoose.Schema({
         type:String,
         required:true,
         
-    },
-    email:{
-        type:String,
-        required:true,
-       
-    },
+    }, 
     date:{
         type:String,
         required:true
-    },
+    }
 
 
 })
 
-const Attendance=mongoose.model("attendance",attendanceSchema);
-module.exports=Attendance
+const Register=mongoose.model("Register",attendanceSchema);
+module.exports= Register

@@ -1,4 +1,4 @@
-const Attendance = require("../db/attendance");
+const Register = require("../db/attendance");
 const Topics = require("../db/classes");
 
 
@@ -74,9 +74,14 @@ exports.deleteTopics=async(req,res)=>{
 
 exports.registerAttendance=async(req,res)=>{
     try {
+      
+         let user=await Register.findOne({name:req.body.name});
+         let date=await Register.findOne({date:req.body.date});
+         if(user && date){
+            return res.status(200).json({message:"you have already registered"})
         
-         
-         let attend = await Attendance({
+         }
+         let attend = await Register({
             ...req.body
          }).save()
 
@@ -91,7 +96,7 @@ exports.registerAttendance=async(req,res)=>{
 
 exports.getallStudents=async(req,res)=>{
     try {
-         let allstudents= await Attendance.find()
+         let allstudents= await Register.find()
          return res.status(200).json({messge:'successfully got attendance',allstudents})
 
     } catch (error) {
