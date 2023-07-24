@@ -28,6 +28,7 @@ const PORT=process.env.PORT
 app.get("/",(req,res)=>{
     res.send("working fine");
 
+    
 })
 
 app.use("/api",mydata)
