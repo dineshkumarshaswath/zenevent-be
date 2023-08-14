@@ -4,8 +4,9 @@
 // import { generatejwttoken } from '../db/user.js'
 const express=require('express')
 
-const { getfunction, signUser, loginUser, allUsers } = require('../controllers/auth')
-// import { getfunction } from '../controllers/auth.js'
+const { getfunction, signUser, loginUser, allUsers,
+     forgotUser, resetUser } = require('../controllers/auth')
+
 
 const router=express.Router()
 
@@ -16,7 +17,8 @@ router.route("/allusers").get(allUsers);
 router.route("/signin").post(signUser);
 
 router.route("/login").post(loginUser)
-
+router.route("/forgot").post(forgotUser)
+router.route("/reset/password/:token").post(resetUser)
 
 module.exports=router
 

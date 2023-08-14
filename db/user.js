@@ -2,6 +2,7 @@
 const mongoose=require("mongoose");
 // import jwt from "jsonwebtoken"
 //const jwt=require("jsonwebtoken")
+const crypto =require("crypto")
  
 
 const usersSchema= new mongoose.Schema({
@@ -29,9 +30,31 @@ const usersSchema= new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    resetPasswordToken: String,
+    resetPasswordTokenExpire: Date,
+    createdAt :{
+        type: Date,
+        default: Date.now
     }
+ 
 
 })
+
+usersSchema.methods.getResetToken = function(){
+    //here is the hash the token
+ 
+     const token = crypto.randomBytes(20).toString('hex');
+     
+    // this is insert the field of resetpasswordtoken
+ 
+    this.resetPasswordToken =  crypto.createHash('sha256').update(token).digest('hex');
+ 
+     this.resetPasswordTokenExpire = Date.now() + 10 * 60 * 10000;
+ 
+     return token
+ }
+ 
 
 
 
